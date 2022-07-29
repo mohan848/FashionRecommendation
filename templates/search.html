@@ -1,0 +1,734 @@
+<html>
+    <head>
+        <title>Search</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=EB Garamond' rel='stylesheet'>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="icon" href="{{url_for('static',filename='imgs/title_logo.png')}}" type="image/icon type">
+        <style>
+            #filter_menu{
+                display: flex;
+                margin-left: 1%;
+                margin-right: 1%;
+            }
+            select{
+                margin: 0.2%;
+            }
+            ::selection{
+      color: #fff;
+      background: #ff944d;
+    }
+    h2{
+        font-family: 'EB Garamond';
+        font-weight: bold;
+    }
+    body
+	{
+	  background: #f2f2f2;
+      font-family: 'Encode Sans', sans-serif;
+      margin:0;
+	}
+        .img-preview {
+    width: 256px;
+    height: 256px;
+    position: relative;
+    border: 5px solid #F8F8F8;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    margin-top: 1em;
+    margin-bottom: 1em;    
+}
+
+.img-preview>div {
+    width: 100%;
+    height: 100%;
+    background-size: 256px 256px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload-label{
+    display: inline-block;
+    padding: 10px 25px;
+    background: #39D2B4;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    transition: all .4s;
+    opacity: 0.9;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.upload-label:hover{
+    opacity: 1;
+}
+
+.loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+#btn-predict{
+    display: inline-block;
+    padding: 10px 25px;
+    background: #387cb4;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all .4s;
+    opacity: 0.7;
+    cursor: pointer;
+    border-radius: 2px;
+    border: none;
+}
+#btn-predict:hover{
+    opacity: 1;
+}
+.card11 {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  float: left;
+  text-align: center;
+  font-family: arial;
+  border-radius: 5px;
+  background-color: white;
+  padding-top: 1%;
+}
+
+
+#add_btn{
+  border: none;
+  outline: 0;
+  padding: 10px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 92%;
+  font-size: 15px;
+  border-radius: 3px;
+}
+#add_btn:hover{
+    opacity: 0.7;
+}
+
+div.gallery {
+  margin: 5px;
+  margin-bottom: 4%;
+  float: left;
+  width: 180px;
+  height: 200px;
+}
+
+div.gallery img {
+	margin-top: 5%;
+  width: 100%;
+  height:  200px;
+  height: auto;
+}
+.row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.gallery{
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+	background-color: white;
+    border-radius: 5px;
+}
+div.gallery:hover {
+  border: 1px solid #777;
+}
+.navbar {
+  overflow: hidden;
+  background-color: white;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #eeeeee;
+  text-align: center;
+  padding: 15px 18px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navbar a:hover {
+  color: #1c87c9;
+}
+
+#main_area{
+    text-align: center;
+    background-color: white;
+    padding: 1%;
+    width: 98%;
+}
+#result_area{
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 5px;
+    width:30%;
+    text-align: center;
+    display: none;
+}
+#default_items{
+    margin-left: 2%;
+}
+#fid{
+    display: none;
+}
+#product_desc{
+    display: none;
+}
+#name1{
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 18px;
+}
+.hideele{
+    display: none;
+}
+.info_fa{
+    font-size: 16px;
+    font-family: verdana;
+}
+#cat{
+  font-size: 18px;
+}
+.price {
+  color: grey;
+  font-size: 22px;
+}
+#show_img{
+    float: left;
+}
+#display_info{
+    float:left;
+    margin-left: 5%;
+    margin-top: 4%;
+
+}
+#image_id{
+    cursor: pointer;
+}
+#add_btn{
+    cursor: pointer;
+}
+/* (A) WRAPPER */
+.hoverwrap {
+  position: relative;
+  max-width: 500px; /* OPTIONAL */
+}
+
+/* (B) RESPONSIVE IMAGE */
+.hoverwrap img { width: 100%; }
+
+/* (C) CAPTION */
+.hovercap {
+  /* (C1) DIMENSIONS */
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  /* (C2) BOTTOM */
+  position: absolute;
+  bottom: 0;
+  /* (C3) COLORS */
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: bold;
+}
+
+/* (D) SHOW/HIDE */
+.hovercap {
+  visibility: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.hoverwrap:hover .hovercap {
+  visibility: visible;
+  opacity: 1;
+}
+#close_btn{
+    display: inline-block;
+    padding: 8px 20px;
+    background: #696969;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all .4s;
+    opacity: 0.7;
+    cursor: pointer;
+    border-radius: 2px;
+    border: none;
+}
+#close_btn:hover{
+    opacity:1;
+}
+hr{
+width: 95%;
+border-top: 2px dashed #ff944d;
+margin-left: auto;
+margin-right: auto;
+
+}
+.header {
+  padding: 75px;
+  text-align: center;
+  background: #ff944d;
+  color: white;
+  font-family: verdana;
+}
+.title{
+    font-size: 30px;
+    font-weight: bold;
+}
+.subtitle{
+    font-size: 18px;
+}
+#home_search{
+    display: inline-block;
+    padding: 10px 25px;
+    background: #ffffff;
+    color: #ff944d;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all .4s;
+    opacity: 0.9;
+    cursor: pointer;
+    border-radius: 2px;
+    border: none;
+}
+#home_search:hover{
+    opacity: 1;
+}
+html{
+    scroll-behavior: smooth;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 18px 27px;
+  text-decoration: none;
+}
+#horizontal-search{
+			width: 98%;
+			height: 4px;
+			background-color: #ff944d;
+			border-radius: 5px;
+            margin-top: 2%;
+		}
+
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>
+            <a href="/">
+                <img src="{{url_for('static',filename='imgs/logo.png')}}" alt="logo" style="width:130px; height: 40px;">
+            </a>
+            </li>
+          </ul>
+        <div class="header">
+            <p class="title">Search with ease!</p>
+            <p class="subtitle">Just upload whatever fashion images you want and get recommendations</p>
+            <a href="#horizontal-search"><button id="home_search"><i class="fa fa-search" style="font-size:18px; color:#ff944d;"></i> Search</button></a>
+        </div>
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content">
+              <div class="w3-container">
+                <span onclick="document.getElementById('id01').style.display='none'"
+                class="w3-button w3-display-topright">&times;</span>
+                <div id="show_img"><img id="img" src="" height="400" width="400"></div>
+                    <div id="display_info">
+                        <p class="info_fa">ID - <span id="faid"></span></p>
+                        <p class="info_fa">Brand - <span id="fabrand"></span></p>
+                        <p class="info_fa">Item name - <span id="faname"></span></p>
+                        <p class="info_fa">Gender - <span id="facate"></span></p>
+                        <p class="info_fa">Category - <span id="facate1"></span></p>
+                        <p class="info_fa">Price - <span id="faprice"></span></p>
+                        <p class="info_fa">Description - <span id="fadesc"></span></p>
+                        <center><p><button id="close_btn" class="btn btn-success" onclick="document.getElementById('id01').style.display='none'">Close</button></p></center>
+                    </div>
+              </div>
+            </div>
+        </div>
+        <div id="content" style="margin-top:2em">
+        <center><h2>Our Collections</h2></center>
+        <div class="row">
+            <div class="gallery">
+                <div class="hoverwrap">
+                <img class="category" src="https://the-collective.imgix.net/img/app/product/5/500048-3755386.jpg?w=610&auto=format" alt="Shirts" width="100%" height="100%">
+                <div class="hovercap">Shirts</div>
+                </div>
+            </div>            
+            <div class="gallery">
+                <div class="hoverwrap">
+                <img class="category" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5nZY07zm2UH-rS0eqj-5obsJpsowW2NNBh7w-IDvA4P-bCOrdiKXOUHCgnvtBEgfw7k&usqp=CAU" alt="Jeans" width="100%" height="100%">
+                <div class="hovercap">Jeans</div>
+            </div>
+            </div>
+            
+            <div class="gallery">
+                <div class="hoverwrap">
+                <img class="category" src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1562005837-flattering-shorts-6-1562005832.jpg?crop=1xw:1xh;center,top&resize=480:*" alt="Shorts" width="100%" height="100%">
+                <div class="hovercap">Shorts</div>
+            </div>
+            </div>
+        
+          <div class="gallery">
+            <div class="hoverwrap">
+            <img class="category"  src="https://m.media-amazon.com/images/I/71D9ImsvEtL._UY500_.jpg" alt="Footwear" width="100%" height="100%">
+            <div class="hovercap">Footwear</div>
+            </div>
+        </div>
+        
+            <div class="gallery">
+                <div class="hoverwrap">
+                <img class="category" src="https://cdn.shopify.com/s/files/1/0555/8658/6685/products/HDFB626240M3_1_1728x.jpg?v=1645161116" alt="Handbags" width="100%" height="100%">
+                <div class="hovercap">Handbags</div>
+            </div>
+            </div>
+            <div class="gallery">
+                <div class="hoverwrap">
+                <img class="category" src="https://staticimg.titan.co.in/Tanishq/Catalog/502760JEZAGA08_1.jpg?impolicy=pqmed&imwidth=640" alt="Jewellery" width="100%" height="100%">
+                <div class="hovercap">Jewellery</div>              
+            </div>
+            </div>
+            <div class="gallery">
+                <div class="hoverwrap">
+                <img class="category" src="https://www.sephora.com/productimages/sku/s1284710-main-zoom.jpg?imwidth=315" alt="Perfume" width="100%" height="100%">
+                <div class="hovercap">Fragrances</div>
+            </div>
+            </div>
+            
+        </div> 
+        <center>
+        <div id="horizontal-search"></div>
+        <div id="main_area">
+        <form id="upload-file" method="post" enctype="multipart/form-data">
+        <label for="imageUpload" class="upload-label">
+            <i class="fa fa-upload" style="font-size:18px;"></i> Upload
+        </label>
+        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+        </form>
+    <center>
+    <div class="image-section" style="display:none;">
+        <div class="img-preview">
+            <div id="imagePreview">
+            </div>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary btn-lg" id="btn-predict"><i class="fa fa-search" style="font-size:18px;"></i> Search</button>
+        </div>
+    </div>
+
+
+    <div class="loader" style="display:none;"></div>
+    </center>
+    <h3 id="result">
+        <span></span>
+    </h3>
+    </div>
+        </center>
+        <div class="container1">
+            <br />
+            <span style="font-size: 16px; font-family: verdana; margin-left: 2%;">Filter by:</span>
+            <div id="filter_menu">
+            
+            <select name="search_filter" id="search_filter" class="form-control">
+            <option value="">Select Gender</option>';
+            {% for row in gender %}
+                <option value="{{row.Category}}">{{row.Category}}</option>';    
+            {% endfor %}
+            </select>
+            <select name="itemcategory_filter" id="itemcategory_filter" class="form-control">
+                <option value="">Select Category</option>';
+                {% for row in itemCategory %}
+                    <option value="{{row.ItemCategory}}">{{row.ItemCategory}}</option>';    
+                {% endfor %}
+            </select>
+            <select name="itemcategory1_filter" id="itemcategory1_filter" class="form-control">
+                    <option value="">Select Item Category</option>';
+                    {% for row in itemCategory1 %}
+                        <option value="{{row.itemCategory1}}">{{row.itemCategory1}}</option>';    
+                    {% endfor %}
+            </select>
+            <button type="button" class="btn btn-primary" id="applyfilter"><i class="fa fa-filter" aria-hidden="true"></i> Apply</button>
+            <button type="button" class="btn" id="clearfilter">Clear</button>
+            <input type="hidden" name="hidden_value" id="hidden_value" />
+            <input type="hidden" name="hidden_category" id="hidden_category" />
+            <input type="hidden" name="hidden_category1" id="hidden_category1" />
+            <div style="clear:both"></div>
+            </div>
+            <br />
+            <div id="default_items">
+                <div id="search_body">
+                    
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
+<script>
+    
+$(document).ready(function(){
+    $('.image-section').hide();
+    $('.loader').hide();
+    $('#result').hide();
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload").change(function () {
+        $('.image-section').show();
+        $('#btn-predict').show();
+        $('#result').text('');
+        $('#result').hide();
+        readURL(this);
+    });
+
+    // Predict
+    $('#btn-predict').click(function () {
+        var form_data = new FormData($('#upload-file')[0]);
+
+        // Show loading animation
+        $(this).hide();
+        $('.loader').show();
+
+        // Make prediction by calling api /predict
+        $.ajax({
+            type: 'POST',
+            url: '/predict',
+            data: form_data,
+            contentType: false,
+            cache: false,
+            processData: false,
+            async: true,
+            success: function (data) {
+                // Get and display the result
+                $('.loader').hide();
+                $('#result').fadeIn(600);
+                $('#result_area').show();
+                $('#result').text('Searching for ' + data);
+                arr = data.split(" ");
+                $("#search_filter").val(arr[0]).change();
+                $("#itemcategory_filter").val(arr[1]).change();
+                $("#itemcategory1_filter").val(arr[2]).change();
+                
+                $('#hidden_value').val($('#search_filter').val());
+                $('#hidden_category').val($('#itemcategory_filter').val());
+                $('#hidden_category1').val($('#itemcategory1_filter').val());
+                var query = $('#hidden_value').val(); 
+                var category=$('#hidden_category').val();
+                var category1=$('#hidden_category1').val();
+                load_data(query,category,category1);
+                count=0;
+                count1=0;
+                console.log('Success!');
+            },
+        });
+
+    });
+    load_data();
+    function load_data(query='',category='',category1='')
+    {
+        $.ajax({
+            url:"/fetchrecords",
+            method:"POST",
+            data:{query:query,category:category,category1:category1},
+            success:function(data)
+            { 
+                $('#search_body').html(data);
+                $('#search_body').append(data.htmlresponse);
+            }
+        })
+    }
+    $('#applyfilter').click(function () {
+        $('#hidden_value').val($('#search_filter').val());
+        $('#hidden_category').val($('#itemcategory_filter').val());
+        $('#hidden_category1').val($('#itemcategory1_filter').val());
+        var query = $('#hidden_value').val(); 
+        var category=$('#hidden_category').val();
+        var category1=$('#hidden_category1').val();
+        load_data(query,category,category1);
+        count=0;
+        count1=0;
+    });
+    $('#clearfilter').click(function(){
+        $("#search_filter").get(0).selectedIndex = 0;
+        $("#itemcategory_filter").get(0).selectedIndex = 0;
+        $("#itemcategory1_filter").get(0).selectedIndex = 0;
+        load_data('','','');
+        count=0;
+        count1=0;
+
+    });
+    /*$('#search_filter').change(function(){
+        $('#hidden_value').val($('#search_filter').val());
+        var query = $('#hidden_value').val(); 
+        load_data(query);
+        count=0;
+        count1=0;
+    });*/
+
+     
+});
+</script>
+<script>
+    var count1=0;
+    function show_image_product_info(){
+    if(count1>0)
+    {
+        document.getElementById('id01').style.display='block';
+    }
+    
+    
+    var show_product_info= document.getElementsByName('image_name');
+    //alert(show_product_info);
+    var id,brand,name,price,cate,cate1,desc1,imgtxt;
+    //alert(show_product_info.length);
+	for(var i=0;i<show_product_info.length;i++)
+	{
+		//alert("Hi");
+		var button=show_product_info[i];
+		button.addEventListener('click',function(event)
+		{
+            //alert("HI");
+			var buttonclicked=event.target;
+			var row1=buttonclicked.parentElement;
+            //alert(row1)
+			var x=row1.querySelectorAll("#fid");
+            var y=row1.querySelectorAll("#fbrand");
+            var z=row1.querySelectorAll("#fname");
+            var p=row1.querySelectorAll("#fprice");
+            var c=row1.querySelectorAll("#fcategory");
+            var c1=row1.querySelectorAll("#fcategory1");
+            var d=row1.querySelectorAll("#fdesc");
+            var image=row1.querySelectorAll("#fimage");
+			id=x[0].innerText;
+            brand=y[0].innerText;
+            name=z[0].innerText;
+            price=p[0].innerText;
+            cate=c[0].innerText;
+            cate1=c1[0].innerText;
+            desc1=d[0].innerText;
+            imgtxt=image[0].innerText;
+            //alert(imgtxt);
+			//alert(id+brand+name+price+cate+cate1+desc1);
+            setval(id,brand,name,price,cate,cate1,desc1,imgtxt);
+            
+
+		}
+		)
+	};
+    count1=count1+1;
+    }
+
+    function setval(id,brand,name,price,cate,cate1,desc1,imgtxt){
+        var imageaddr=`/static/uploads/${imgtxt}`;
+        //alert(`/static/uploads/${imgtxt}`);
+        document.getElementById('img').src=imageaddr;
+        document.getElementById('faid').textContent=id;
+        document.getElementById('fabrand').textContent=brand;
+        document.getElementById('faname').textContent=name;
+        document.getElementById('faprice').textContent=price;
+        document.getElementById('facate').textContent=cate;
+        document.getElementById('facate1').textContent=cate1;
+        document.getElementById('fadesc').textContent=desc1;
+    }
+    
+</script>
+<script>
+var count=0;
+function show_product_info(){
+
+if(count>0)
+{
+    document.getElementById('id01').style.display='block';
+}
+
+
+var show_product_info= document.getElementsByName('show_product_info');
+var id,brand,name,price,cate,cate1,desc1,imgtxt;
+for(var i=0;i<show_product_info.length;i++)
+{
+    //alert("Hi");
+    var button=show_product_info[i];
+    button.addEventListener('click',function(event)
+    {
+        //alert("HI");
+        var buttonclicked=event.target;
+        var row1=buttonclicked.parentElement.parentElement;
+        //alert(row1)
+        var x=row1.querySelectorAll("#fid");
+        var y=row1.querySelectorAll("#fbrand");
+        var z=row1.querySelectorAll("#fname");
+        var p=row1.querySelectorAll("#fprice");
+        var c=row1.querySelectorAll("#fcategory");
+        var c1=row1.querySelectorAll("#fcategory1");
+        var d=row1.querySelectorAll("#fdesc");
+        var image=row1.querySelectorAll("#fimage");
+        id=x[0].innerText;
+        brand=y[0].innerText;
+        name=z[0].innerText;
+        price=p[0].innerText;
+        cate=c[0].innerText;
+        cate1=c1[0].innerText;
+        desc1=d[0].innerText;
+        imgtxt=image[0].innerText;
+        //alert(imgtxt);
+        //alert(id+brand+name+price+cate+cate1+desc1);
+        setval(id,brand,name,price,cate,cate1,desc1,imgtxt);
+    }
+    )
+};
+count=count+1;
+}
+</script>
+</body>
+</html>

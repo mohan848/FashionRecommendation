@@ -1,0 +1,331 @@
+<!DOCTYPE  html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="{{url_for('static',filename='imgs/title_logo.png')}}" type="image/icon type">
+    <link href='https://fonts.googleapis.com/css?family=EB Garamond' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.4/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.4/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.6.0/dt-1.11.4/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function() {
+      $('#example').DataTable( {
+          "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+          } );
+      } );
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <style>
+    table.dataTable thead .sorting:after,
+		table.dataTable thead .sorting:before,
+		table.dataTable thead .sorting_asc:after,
+		table.dataTable thead .sorting_asc:before,
+		table.dataTable thead .sorting_asc_disabled:after,
+		table.dataTable thead .sorting_asc_disabled:before,
+		table.dataTable thead .sorting_desc:after,
+		table.dataTable thead .sorting_desc:before,
+		table.dataTable thead .sorting_desc_disabled:after,
+		table.dataTable thead .sorting_desc_disabled:before 
+		{
+			bottom: .5em;
+		}
+
+      html{
+      scroll-behavior: smooth;
+    }
+    ::selection{
+      color: #fff;
+      background: #ff944d;
+    }
+    #button-addon1 {
+          float:  right;
+    }
+
+    .form-control::placeholder {
+      font-size: 0.95rem;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    .form-control.shadow-0:focus {
+      box-shadow: none;
+    }
+      #button-link a
+      {
+        color:#f2f2f2;
+        font-size: 20px;
+      }
+      a 
+      {
+        color:  #a6a6a6;
+        font-size: 18px
+      }
+      a:hover {
+      color:  #a6a6a6;
+      text-decoration: underline;
+      border-bottom: solid 3px #ff944d;
+      }
+    html{
+      scroll-behavior: smooth;
+    }
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  min-height: 100vh;
+  background: #f2f2f2;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 15px;
+}
+.drag-area{
+  margin-top: 10%;
+  border: 3px dashed #fff;
+  height: 350px;
+  width: 570px;
+  border-radius: 5px;
+  background-color: #ffa366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.drag-area.active{
+  border: 2px solid #fff;
+}
+.drag-area .icon{
+  font-size: 90px;
+  color: #fff;
+}
+.drag-area header{
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+}
+.drag-area span{
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  margin: 10px 0 15px 0;
+}
+.drag-area button{
+  padding: 6px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  background: #fff;
+  color: #ff944d;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.drag-area img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+#upload{
+  background-color: #ff944d;
+  color: white;
+  padding: 8px;
+  margin: 2px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  display: none;
+  border-radius: 3px;
+  
+}
+#upload:hover{
+  opacity: 1;
+}
+input[type=text]:focus{
+  background-color: #ddd;
+  outline: none;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+.analytics_dashboard{
+      float:left;
+      background-color: white;
+      width: 100%;
+      border-radius: 5px;
+      padding: 2%;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    }
+.form-control{
+	margin:1%;
+}
+h6{
+  color: red;
+}
+#image-selector{
+  width: 300px;
+}
+.item_category{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 15px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+h2{
+  font-family: verdana;
+}
+.horizontal{
+			width: 100%;
+			height: 4px;
+			background-color: #ff944d;
+			border-radius: 5px;
+			margin-top: 2%;
+		}
+#barchart{
+  float:left;
+}
+#donutchart{
+  float:left;
+}
+#whole{
+  float:left;
+}
+h4{
+  font-family: Verdana;
+}
+#category_filter{
+    padding : 1px;
+    width:100px;
+}
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #ffffff;">
+  <a class="navbar-brand" href="#">
+    <img src="{{url_for('static',filename='imgs/logo.png')}}" alt="logo" style="width:130px; height: 40px;">
+  </a>
+  <ul class="nav navbar-nav">
+    <!--<li class="nav-item"><a class="nav-link">Welcome {{username}}</a></li>-->
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('add_item') }}"><i class="fa fa-home" style="font-size:20px"></i>&nbsp;Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-area-chart" style="font-size:20px"></i>&nbsp;Analytics</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}"><i class="fa fa-sign-out" style="font-size:20px"></i>&nbsp;Logout</a></li>
+   </ul>
+  </nav>
+  <div class="container-fluid">
+    <div class="horizontal"></div>
+    <div class="analytics_dashboard">
+      <div id="barchart"  style="width: 700px; height: 500px;"></div>
+        <div id="donutchart" style="width: 700px; height: 500px;"></div>
+      <div id="whole">
+
+      </div>
+      <div id="table_div">
+        <table id="example" class="display" style="width:100%">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Brand</th>
+                  <th>Item name</th>
+                  <th>Gender</th>
+                  <th>Category</th>
+                  <th>Price</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for item in item_list%}
+              <tr>
+                  <td>{{item.get('ID')}}</td>
+                  <td>{{item.get('Brand')}}</td>
+                  <td>{{item.get('item_name')}}</td>
+                  <td>{{item.get('Category')}}</td>
+                  <td>{{item.get('ItemCategory')}} {{item.get('itemCategory1')}}</td>
+                  <td>{{item.get('Price')}}</td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+    </div>
+      
+    </div> 
+  </div>
+</body>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        {% for key, value in itemCount1_dic.items() %}
+				{% if value is string %}
+					['{{ key }}', '{{ value }}'],
+				{% else %}
+					['{{ key }}', {{ value }}],
+				{% endif %}
+			{% endfor %}
+        ]);
+        var options = {
+          title: 'Various Sub Categories in Inventory',
+          pieHole: 0.4,
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+      google.charts.load('current', {packages: ['corechart', 'bar']});
+      google.charts.setOnLoadCallback(drawBarChart);
+
+
+
+
+function drawBarChart() {
+
+      var data = google.visualization.arrayToDataTable([
+         {% for key, value in item_total_price_dic.items() %}
+				{% if value is string %}
+					['{{ key }}', '{{ value }}'],
+				{% else %}
+					['{{ key }}', {{ value }}],
+				{% endif %}
+			{% endfor %}
+      ]);
+
+      var options = {
+        legend:'none',
+        title: 'Total Prices of Various Categories',
+        chartArea: {width: '50%'},
+        hAxis: {
+          title: 'Total Price',
+          minValue: 0
+        },
+        vAxis: {
+          title: 'Category'
+        }
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('barchart'));
+
+      chart.draw(data, options);
+    }
+
+    </script>
+</html>

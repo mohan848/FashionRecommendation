@@ -1,0 +1,33 @@
+<head>
+    <style>
+ .card11 {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  float: left;
+  text-align: center;
+  font-family: arial;
+  margin: 1%;
+  border-radius: 5px;
+  background-color: white;
+  padding-top: 1%;
+}
+    </style>
+</head>
+<h4>{{numrows}} Items Found</h4>
+{% for item in itemlist %}  
+<div class="card11" id="product_card11">    
+    <img src="{{url_for('static',filename='uploads/'+item.get('img_name'))}}" alt="" style="width:260; height: 30%;" onclick="show_image_product_info()" name="image_name" id="image_id">
+    <span id="fimage" class="hideele">{{item.get('img_name')}}</span>
+    <span id="fid" class="hideele">{{item.get('ID')}}</span>
+    <span id="fbrand" class="hideele">{{item.get('Brand')}} </span>
+    <span id="fname" class="hideele">{{item.get('item_name')}}</span>
+    <span id="fprice" class="hideele">{{item.get('Price')}}</span>
+    <span id="fcategory" class="hideele">{{item.get('Category')}}</span>
+    <span id="fcategory1" class="hideele"> {{item.get('itemCategory1')}}</span>
+    <span id="fdesc" class="hideele">{{item.get('description')}}</span>
+    <p><span id="name1">{{item.get('Brand')}} {{item.get('item_name')}}</span></p>
+    <p class="price">{{item.get('Price')}}</p>
+    <p><span id="cat">{{item.get('Category')}} {{item.get('itemCategory1')}}</span></p>
+    <p><span id="product_desc">{{item.get('description')}}</span></p>
+    <p><button id="add_btn" name="show_product_info" onclick="show_product_info()">+ ADD</button>
+</div>
+{% endfor %} 
